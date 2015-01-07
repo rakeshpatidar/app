@@ -1,0 +1,114 @@
+  [1m[36m (818.2ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (787.0ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (8.7ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateTasks (20150105195942)
+  [1m[35m (297.5ms)[0m  CREATE TABLE `tasks` (`id` int(11) auto_increment PRIMARY KEY, `task` varchar(255), `discription` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (39.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150105195942')
+  [1m[36m (85.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (47.7ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'app_development'
+  AND fk.table_name = 'tasks'
+[0m
+  [1m[35m (0.5ms)[0m  SHOW CREATE TABLE `tasks`
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-06 01:34:51 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/rakesh/.rvm/gems/ruby-2.1.2@herokuapp/gems/railties-4.2.0/lib/rails/templates/rails/welcome/index.html.erb (3.3ms)
+Completed 200 OK in 568ms (Views: 152.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-06 01:38:32 +0530
+Processing by TasksController#index as HTML
+  [1m[35mTask Load (144.3ms)[0m  SELECT `tasks`.* FROM `tasks`
+  Rendered tasks/index.html.erb within layouts/application (215.3ms)
+Completed 200 OK in 1862ms (Views: 1627.0ms | ActiveRecord: 210.9ms)
+
+
+Started GET "/assets/scaffolds-a158603269933c9b0ce0c4fca60cfc2e.css?body=1" for 127.0.0.1 at 2015-01-06 01:38:36 +0530
+
+
+Started GET "/assets/tasks-069e88c06b889877799890854d7f4c40.css?body=1" for 127.0.0.1 at 2015-01-06 01:38:36 +0530
+
+
+Started GET "/assets/application-2af8629f553ce5b30a344da14d8af578.css?body=1" for 127.0.0.1 at 2015-01-06 01:38:36 +0530
+
+
+Started GET "/assets/tasks-8f6eecd1178ef85964369ec66d33c4f1.js?body=1" for 127.0.0.1 at 2015-01-06 01:38:36 +0530
+
+
+Started GET "/assets/jquery-eb3e278249152b5b5d5170b73d9dbf52.js?body=1" for 127.0.0.1 at 2015-01-06 01:38:37 +0530
+
+
+Started GET "/assets/turbolinks-924184401b7d116eadaaefc96895fa84.js?body=1" for 127.0.0.1 at 2015-01-06 01:38:37 +0530
+
+
+Started GET "/assets/jquery_ujs-0b8f09cf5aec4ba1be1abd9f915c77e2.js?body=1" for 127.0.0.1 at 2015-01-06 01:38:37 +0530
+
+
+Started GET "/assets/application-9d71a2f6dda6b569ca80f60714aabe8b.js?body=1" for 127.0.0.1 at 2015-01-06 01:38:37 +0530
+
+
+Started GET "/tasks/new" for 127.0.0.1 at 2015-01-06 01:38:44 +0530
+Processing by TasksController#new as HTML
+  Rendered tasks/_form.html.erb (178.4ms)
+  Rendered tasks/new.html.erb within layouts/application (470.9ms)
+Completed 200 OK in 840ms (Views: 669.7ms | ActiveRecord: 120.8ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2015-01-06 01:38:57 +0530
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"92c2bUmIT0V5CEwvRQ3F0qDUBaR3V1FGGnazoJyi4oNzuKls3R4dc/1EqRcWysFaSPDGqFOPUYyGsBQa8dKT4Q==", "task"=>{"task"=>"my task", "discription"=>"hello task"}, "commit"=>"Create Task"}
+  [1m[36m (198.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (599.1ms)[0m  INSERT INTO `tasks` (`task`, `discription`, `created_at`, `updated_at`) VALUES ('my task', 'hello task', '2015-01-05 20:08:57.648987', '2015-01-05 20:08:57.648987')
+  [1m[36m (190.6ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/tasks/1
+Completed 302 Found in 1096ms (ActiveRecord: 987.9ms)
+
+
+Started GET "/tasks/1" for 127.0.0.1 at 2015-01-06 01:38:58 +0530
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mTask Load (67.7ms)[0m  SELECT  `tasks`.* FROM `tasks` WHERE `tasks`.`id` = 1 LIMIT 1
+  Rendered tasks/show.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 254ms (Views: 120.6ms | ActiveRecord: 67.7ms)
+
+
+Started GET "/assets/turbolinks-924184401b7d116eadaaefc96895fa84.js?body=1" for 127.0.0.1 at 2015-01-06 01:38:58 +0530
+
+
+Started GET "/assets/jquery-eb3e278249152b5b5d5170b73d9dbf52.js?body=1" for 127.0.0.1 at 2015-01-06 01:38:58 +0530
+
+
+Started GET "/assets/jquery_ujs-0b8f09cf5aec4ba1be1abd9f915c77e2.js?body=1" for 127.0.0.1 at 2015-01-06 01:38:58 +0530
+
+
+Started GET "/assets/application-9d71a2f6dda6b569ca80f60714aabe8b.js?body=1" for 127.0.0.1 at 2015-01-06 01:38:58 +0530
+
+
+Started GET "/" for 127.0.0.1 at 2015-01-08 00:33:10 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (277.9ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by TasksController#index as HTML
+  [1m[35mTask Load (30.5ms)[0m  SELECT `tasks`.* FROM `tasks`
+  Rendered tasks/index.html.erb within layouts/application (167.3ms)
+Completed 200 OK in 1418ms (Views: 1076.8ms | ActiveRecord: 64.9ms)
+
+
+Started GET "/assets/turbolinks-924184401b7d116eadaaefc96895fa84.js?body=1" for 127.0.0.1 at 2015-01-08 00:33:20 +0530
+
+
+Started GET "/assets/jquery_ujs-0b8f09cf5aec4ba1be1abd9f915c77e2.js?body=1" for 127.0.0.1 at 2015-01-08 00:33:20 +0530
+
+
+Started GET "/assets/application-9d71a2f6dda6b569ca80f60714aabe8b.js?body=1" for 127.0.0.1 at 2015-01-08 00:33:20 +0530
+
+
+Started GET "/assets/jquery-eb3e278249152b5b5d5170b73d9dbf52.js?body=1" for 127.0.0.1 at 2015-01-08 00:33:20 +0530
